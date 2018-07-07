@@ -112,7 +112,7 @@ _key = "Carry"
 _slot = "RightHand"
 _additionalSlots = null
 Active = false
-Mesh = null
+Mesh = ExtResource( 2 )
 Animation = ExtResource( 10 )
 
 [node name="Markers" type="Spatial" parent="." index="4"]

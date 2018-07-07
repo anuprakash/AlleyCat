@@ -1,8 +1,10 @@
 using System;
 using System.Diagnostics;
+using System.Reactive.Concurrency;
 using AlleyCat.Animation;
 using AlleyCat.Autowire;
 using AlleyCat.Common;
+using AlleyCat.Event;
 using AlleyCat.Motion;
 using Godot;
 using JetBrains.Annotations;
@@ -65,6 +67,14 @@ namespace AlleyCat.Sensor
 
         [Export, NotNull] private string _eyeBoneRight = "eye_R";
 
+        [Export, UsedImplicitly] private float _blinkInterval = 3f;
+
+        [Export, UsedImplicitly] private float _blinkVariation = 0.5f;
+
+        private IScheduler _scheduler;
+
+        private readonly Random _random = new Random(DateTime.Now.Millisecond);
+
         [PostConstruct]
         protected virtual void OnInitialize()
         {
@@ -86,6 +96,10 @@ namespace AlleyCat.Sensor
 
             HeadOrientation = DetectOrientation(HeadBone);
             NeckOrientation = DetectOrientation(NeckBone);
+
+            _scheduler = this.GetScheduler(AnimationManager.ProcessMode);
+
+            Blink();
         }
 
         private Basis DetectOrientation(int bone)
@@ -117,6 +131,15 @@ namespace AlleyCat.Sensor
 
             Yaw = euler.y;
             Pitch = euler.x;
+        }
+
+        private void Blink()
+        {
+            var delay = _blinkInterval + (_random.NextDouble() - 0.5) * _blinkVariation;
+
+            ((AnimationStateManager) AnimationManager).TreePlayer.OneshotNodeStart("Blink");
+
+            _scheduler.Schedule(TimeSpan.FromSeconds(delay), _ => Blink());
         }
     }
 }

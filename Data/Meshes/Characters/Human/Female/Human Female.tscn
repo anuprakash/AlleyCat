@@ -1,14 +1,14 @@
 [gd_scene load_steps=21 format=2]
 
-[ext_resource path="res://Data/Meshes/Characters/Human/Female/Body.dae" type="PackedScene" id=1]
-[ext_resource path="res://Source/AlleyCat/Character/Humanoid.cs" type="Script" id=2]
-[ext_resource path="res://Data/Meshes/Characters/Human/Female/Skin.material" type="Material" id=3]
-[ext_resource path="res://Data/Meshes/Hairs/Human/Female/Short Hair/Short Hair.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Data/Meshes/Clothes/Human/Common/Collar/Collar.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Data/Meshes/Clothes/Human/Female/Rag/Rag.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Data/Meshes/Clothes/Human/Female/Rag/Rag.mesh" type="ArrayMesh" id=7]
-[ext_resource path="res://Source/AlleyCat/Common/Marker.cs" type="Script" id=8]
-[ext_resource path="res://Source/AlleyCat/Autowire/Binding.cs" type="Script" id=9]
+[ext_resource path="res://Source/AlleyCat/Character/Humanoid.cs" type="Script" id=1]
+[ext_resource path="res://Data/Meshes/Characters/Human/Female/Body.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Data/Meshes/Hairs/Human/Female/Short Hair/Short Hair.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Data/Meshes/Clothes/Human/Common/Collar/Collar.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Data/Meshes/Clothes/Human/Female/Rag/Rag.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Data/Meshes/Clothes/Human/Female/Rag/Rag.mesh" type="ArrayMesh" id=6]
+[ext_resource path="res://Source/AlleyCat/Common/Marker.cs" type="Script" id=7]
+[ext_resource path="res://Source/AlleyCat/Autowire/Binding.cs" type="Script" id=8]
+[ext_resource path="res://Data/Meshes/Characters/Human/Female/Animations - Expressions/Blinking.tres.anim" type="Animation" id=9]
 [ext_resource path="res://Data/Meshes/Characters/Human/Female/Animations - Locomotion/Idle.anim" type="Animation" id=10]
 [ext_resource path="res://Data/Meshes/Characters/Human/Female/Animations - Locomotion/Reset.anim" type="Animation" id=11]
 [ext_resource path="res://Data/Meshes/Characters/Human/Female/Animations - Locomotion/Walk Backward.anim" type="Animation" id=12]
@@ -20,91 +20,479 @@
 [ext_resource path="res://Source/AlleyCat/Animation/AnimationStateManager.cs" type="Script" id=18]
 [ext_resource path="res://Source/AlleyCat/Character/CharacterEquipments.cs" type="Script" id=19]
 
-[sub_resource type="CapsuleShape" id=1]
+[sub_resource type="CapsuleShape" id=6]
 
 radius = 0.246558
 height = 1.13148
 _sections_unfolded = [ "Resource" ]
 
-[node name="Human Female" index="0" instance=ExtResource( 1 )]
-script = ExtResource( 2 )
+[node name="Human Female" type="KinematicBody" index="0"]
+input_ray_pickable = true
+input_capture_on_drag = false
+collision_layer = 1
+collision_mask = 1
+axis_lock_linear_x = false
+axis_lock_linear_y = false
+axis_lock_linear_z = false
+axis_lock_angular_x = false
+axis_lock_angular_y = false
+axis_lock_angular_z = false
+collision/safe_margin = 0.001
+script = ExtResource( 1 )
 _key = null
 _displayName = null
 _race = "Human"
 _sex = 1
 
-[node name="Skeleton" parent="Rig" index="0"]
+[node name="Rig" type="Spatial" parent="." index="0"]
+
+[node name="Skeleton" type="Skeleton" parent="Rig" index="0"]
+bones/0/name = "root"
+bones/0/parent = -1
+bones/0/rest = Transform( 1, 3.6745e-06, 2.29829e-07, -3.6745e-06, 1, 0, -2.29829e-07, -8.44506e-13, 1, -1.95347e-08, 0, 0.0006425 )
+bones/0/enabled = true
+bones/0/bound_children = [  ]
+bones/1/name = "pelvis"
+bones/1/parent = 0
+bones/1/rest = Transform( -1, -4.31185e-07, 3.67435e-06, -3.6752e-06, 0.0019764, -0.999998, 4.23922e-07, -0.999998, -0.00197633, -2.8487e-06, 0.779992, -0.0186025 )
+bones/1/enabled = true
+bones/1/bound_children = [  ]
+bones/2/name = "thigh_L"
+bones/2/parent = 1
+bones/2/rest = Transform( -0.993849, 0.0131352, -0.110044, 0.0151487, 0.999733, -0.0174554, 0.109785, -0.0190148, -0.993773, 0.112423, -0.00901339, -0.0746613 )
+bones/2/enabled = true
+bones/2/bound_children = [  ]
+bones/3/name = "calf_L"
+bones/3/parent = 2
+bones/3/rest = Transform( 0.999815, -0.0192194, -0.000715348, 0.0192228, 0.999802, 0.00509802, 0.000617252, -0.00511083, 0.999987, -2.17697e-08, -1.62981e-09, -0.395741 )
+bones/3/enabled = true
+bones/3/bound_children = [  ]
+bones/4/name = "calf_twist_L"
+bones/4/parent = 3
+bones/4/rest = Transform( 0.999945, -0.000184807, 0.010452, -3.36557e-06, 0.999838, 0.0180004, -0.0104536, -0.0179995, 0.999783, -3.31784e-08, 3.25963e-09, 5.66652e-08 )
+bones/4/enabled = true
+bones/4/bound_children = [  ]
+bones/5/name = "foot_L"
+bones/5/parent = 3
+bones/5/rest = Transform( 0.993244, -0.114551, -0.0185742, 0.0413503, 0.498904, -0.86567, 0.10843, 0.859053, 0.50027, -1.3737e-08, -2.21189e-09, -0.373802 )
+bones/5/enabled = true
+bones/5/bound_children = [  ]
+bones/6/name = "toes_L"
+bones/6/parent = 5
+bones/6/rest = Transform( 0.994357, 0.103939, 0.021255, -0.0850588, 0.900811, -0.425798, -0.0634036, 0.421587, 0.904569, 2.26983e-08, -5.12227e-09, -0.144366 )
+bones/6/enabled = true
+bones/6/bound_children = [  ]
+bones/7/name = "thigh_twist_L"
+bones/7/parent = 2
+bones/7/rest = Transform( 0.99999, -0.00210038, -0.00389628, 0.00172822, 0.995648, -0.0931753, 0.00407503, 0.0931677, 0.995642, -6.17438e-08, -1.95578e-08, 4.77652e-07 )
+bones/7/enabled = true
+bones/7/bound_children = [  ]
+bones/8/name = "thigh_R"
+bones/8/parent = 1
+bones/8/rest = Transform( -0.993859, -0.0130666, 0.110028, -0.0150817, 0.999734, -0.0174541, -0.10977, -0.0190057, -0.993775, -0.112423, -0.00901343, -0.0746611 )
+bones/8/enabled = true
+bones/8/bound_children = [  ]
+bones/9/name = "calf_R"
+bones/9/parent = 8
+bones/9/rest = Transform( 0.999815, 0.0192234, 0.00071577, -0.0192268, 0.999802, 0.00509822, -0.000617627, -0.00511104, 0.999987, 1.06229e-08, -6.98492e-10, -0.395746 )
+bones/9/enabled = true
+bones/9/bound_children = [  ]
+bones/10/name = "calf_twist_R"
+bones/10/parent = 9
+bones/10/rest = Transform( 0.999945, 0.000187231, -0.0104487, 8.77539e-07, 0.999838, 0.0180001, 0.0104504, -0.0179991, 0.999783, -9.95351e-09, -4.19095e-09, -7.22648e-08 )
+bones/10/enabled = true
+bones/10/bound_children = [  ]
+bones/11/name = "foot_R"
+bones/11/parent = 9
+bones/11/rest = Transform( 0.993233, 0.114647, 0.0185494, -0.0414194, 0.498896, -0.865671, -0.1085, 0.859045, 0.500269, -7.15954e-09, -1.86265e-09, -0.373807 )
+bones/11/enabled = true
+bones/11/bound_children = [  ]
+bones/12/name = "toes_R"
+bones/12/parent = 11
+bones/12/rest = Transform( -0.99782, 0.0624694, -0.0212596, -0.0474965, -0.903568, -0.425804, -0.0458093, -0.423866, 0.904566, -3.65617e-10, 1.95578e-08, -0.144365 )
+bones/12/enabled = true
+bones/12/bound_children = [  ]
+bones/13/name = "thigh_twist_R"
+bones/13/parent = 8
+bones/13/rest = Transform( 0.99999, 0.00209104, 0.00388596, -0.00171989, 0.995648, -0.0931728, -0.00406389, 0.0931652, 0.995642, -9.25502e-09, 7.91624e-09, -2.99478e-08 )
+bones/13/enabled = true
+bones/13/bound_children = [  ]
+bones/14/name = "spine01"
+bones/14/parent = 1
+bones/14/rest = Transform( 1, -3.06856e-07, -5.31463e-08, 3.11326e-07, 0.989319, 0.145765, 7.84976e-09, -0.145765, 0.989319, 0, -1.28056e-09, -0.144719 )
+bones/14/enabled = true
+bones/14/bound_children = [  ]
+bones/15/name = "spine02"
+bones/15/parent = 14
+bones/15/rest = Transform( 1, 1.74692e-07, 1.0511e-08, -1.74735e-07, 0.993288, 0.11567, 9.76618e-09, -0.11567, 0.993288, 2.90046e-15, 8.09086e-09, -0.117229 )
+bones/15/enabled = true
+bones/15/bound_children = [  ]
+bones/16/name = "spine03"
+bones/16/parent = 15
+bones/16/rest = Transform( 1, 2.5272e-08, 1.99477e-09, -2.5169e-08, 0.99916, -0.0409885, -3.02896e-09, 0.0409885, 0.99916, 1.5099e-14, -1.49012e-08, -0.117952 )
+bones/16/enabled = true
 bones/16/bound_children = [ NodePath("Chest") ]
-bones/20/bound_children = [ NodePath("Left Hand") ]
-bones/45/bound_children = [ NodePath("Right Hand") ]
+bones/17/name = "clavicle_L"
+bones/17/parent = 16
+bones/17/rest = Transform( -0.222334, -0.0878256, -0.971007, -0.0021721, 0.995977, -0.0895867, 0.974968, -0.0178091, -0.22163, 0.0319597, 0.0263794, -0.157404 )
+bones/17/enabled = true
+bones/17/bound_children = [  ]
+bones/18/name = "upperarm_L"
+bones/18/parent = 17
+bones/18/rest = Transform( 0.955274, 0.134643, -0.263291, -0.0930419, 0.981965, 0.164587, 0.280703, -0.132729, 0.950573, 8.70321e-07, -3.33413e-07, -0.109797 )
+bones/18/enabled = true
+bones/18/bound_children = [  ]
+bones/19/name = "lowerarm_L"
+bones/19/parent = 18
+bones/19/rest = Transform( 0.999294, 0.0356767, -0.0117889, -0.0372625, 0.981285, -0.18892, 0.00482818, 0.189226, 0.981922, 1.49827e-07, -1.86265e-09, -0.270654 )
+bones/19/enabled = true
+bones/19/bound_children = [  ]
+bones/20/name = "lowerarm_twist_L"
+bones/20/parent = 19
+bones/20/rest = Transform( 0.999971, 0.00589441, -0.00481422, -0.005958, 0.999894, -0.0133041, 0.00473527, 0.0133324, 0.9999, 2.05182e-07, -2.6077e-08, -1.79512e-07 )
+bones/20/enabled = true
+bones/20/bound_children = [  ]
+bones/21/name = "hand_L"
+bones/21/parent = 19
+bones/21/rest = Transform( 0.0410691, 0.994053, -0.100855, -0.99512, 0.0497579, 0.085204, 0.0897156, 0.0968636, 0.991246, 1.57976e-07, 3.72529e-09, -0.230971 )
+bones/21/enabled = true
+bones/21/bound_children = [ NodePath("Left Hand") ]
+bones/22/name = "thumb01_L"
+bones/22/parent = 21
+bones/22/rest = Transform( 0.093311, -0.780634, 0.617984, 0.803417, -0.307567, -0.509827, 0.588059, 0.544071, 0.598475, -0.0163288, 0.00333261, -0.013247 )
+bones/22/enabled = true
+bones/22/bound_children = [  ]
+bones/23/name = "thumb02_L"
+bones/23/parent = 22
+bones/23/rest = Transform( 0.961993, -0.0526589, 0.267947, 0.114919, 0.968179, -0.222314, -0.247714, 0.244657, 0.937433, 4.65661e-08, 7.45058e-09, -0.0382214 )
+bones/23/enabled = true
+bones/23/bound_children = [  ]
+bones/24/name = "thumb03_L"
+bones/24/parent = 23
+bones/24/rest = Transform( 0.994669, 0.0631811, -0.0815011, -0.0300287, 0.933539, 0.357216, 0.0986538, -0.352864, 0.930459, -8.3819e-09, 8.56817e-08, -0.0318335 )
+bones/24/enabled = true
+bones/24/bound_children = [  ]
+bones/25/name = "index00_L"
+bones/25/parent = 21
+bones/25/rest = Transform( -0.984713, -0.164761, 0.0565243, 0.170486, -0.978172, 0.1188, 0.035717, 0.12662, 0.991308, -0.0177721, 0.000725243, -0.0206455 )
+bones/25/enabled = true
+bones/25/bound_children = [  ]
+bones/26/name = "index01_L"
+bones/26/parent = 25
+bones/26/rest = Transform( 0.975435, -0.201855, 0.0882059, 0.177422, 0.957232, 0.228533, -0.130564, -0.20727, 0.969532, 3.72529e-09, -3.95812e-08, -0.0537167 )
+bones/26/enabled = true
+bones/26/bound_children = [  ]
+bones/27/name = "index02_L"
+bones/27/parent = 26
+bones/27/rest = Transform( 0.99766, 0.0258939, 0.0632755, -0.0247897, 0.999528, -0.0181742, -0.0637162, 0.0165631, 0.997831, -1.45519e-09, 1.72295e-08, -0.0333521 )
+bones/27/enabled = true
+bones/27/bound_children = [  ]
+bones/28/name = "index03_L"
+bones/28/parent = 27
+bones/28/rest = Transform( 0.99982, -0.012132, 0.0145756, 0.00849012, 0.973622, 0.228009, -0.0169574, -0.227844, 0.97355, 1.86265e-09, 8.801e-08, -0.0224329 )
+bones/28/enabled = true
+bones/28/bound_children = [  ]
+bones/29/name = "middle00_L"
+bones/29/parent = 21
+bones/29/rest = Transform( -0.991319, -0.131479, 5.09955e-05, 0.12797, -0.964767, 0.229889, -0.0301765, 0.2279, 0.973216, -0.00448281, 0.00201394, -0.021077 )
+bones/29/enabled = true
+bones/29/bound_children = [  ]
+bones/30/name = "middle01_L"
+bones/30/parent = 29
+bones/30/rest = Transform( 0.982855, -0.180898, 0.0356721, 0.151727, 0.903434, 0.400982, -0.104764, -0.388695, 0.915391, -9.31323e-09, -6.1933e-08, -0.0522127 )
+bones/30/enabled = true
+bones/30/bound_children = [  ]
+bones/31/name = "middle02_L"
+bones/31/parent = 30
+bones/31/rest = Transform( 0.998607, 0.0527508, -0.00077495, -0.052686, 0.996405, -0.0663363, -0.00272712, 0.0662848, 0.997797, -1.86265e-08, 1.58325e-08, -0.039648 )
+bones/31/enabled = true
+bones/31/bound_children = [  ]
+bones/32/name = "middle03_L"
+bones/32/parent = 31
+bones/32/rest = Transform( 0.99994, 0.00567785, -0.00935566, -0.00378619, 0.981575, 0.191037, 0.010268, -0.190991, 0.981538, -9.31323e-10, 6.51926e-08, -0.0246963 )
+bones/32/enabled = true
+bones/32/bound_children = [  ]
+bones/33/name = "ring00_L"
+bones/33/parent = 21
+bones/33/rest = Transform( -0.989958, -0.0751193, -0.119748, 0.0477804, -0.975074, 0.216675, -0.133039, 0.208777, 0.968872, 0.00513238, 0.000747195, -0.0205347 )
+bones/33/enabled = true
+bones/33/bound_children = [  ]
+bones/34/name = "ring01_L"
+bones/34/parent = 33
+bones/34/rest = Transform( 0.998424, -0.0264791, -0.0494793, 0.0434722, 0.922507, 0.383524, 0.0354896, -0.385071, 0.922204, 1.86265e-09, -1.87021e-07, -0.0480417 )
+bones/34/enabled = true
+bones/34/bound_children = [  ]
+bones/35/name = "ring02_L"
+bones/35/parent = 34
+bones/35/rest = Transform( 0.999711, -0.0232111, 0.00630616, 0.0236685, 0.996, -0.0861621, -0.00428101, 0.0862864, 0.996261, -4.19095e-09, -2.15834e-07, -0.039508 )
+bones/35/enabled = true
+bones/35/bound_children = [  ]
+bones/36/name = "ring03_L"
+bones/36/parent = 35
+bones/36/rest = Transform( 0.998686, -0.00968369, -0.0503317, 0.0157603, 0.992432, 0.121776, 0.0487716, -0.122409, 0.991281, 4.65661e-09, 1.06869e-07, -0.0224039 )
+bones/36/enabled = true
+bones/36/bound_children = [  ]
+bones/37/name = "pinky00_L"
+bones/37/parent = 21
+bones/37/rest = Transform( -0.992094, -0.0626679, -0.108732, 0.0400687, -0.979224, 0.198783, -0.11893, 0.192854, 0.973993, 0.0216406, 0.00461474, -0.0185491 )
+bones/37/enabled = true
+bones/37/bound_children = [  ]
+bones/38/name = "pinky01_L"
+bones/38/parent = 37
+bones/38/rest = Transform( 0.998373, -0.0236228, -0.0518937, 0.0383857, 0.951458, 0.305377, 0.0421608, -0.306872, 0.950817, 2.09548e-09, -2.02039e-07, -0.0443928 )
+bones/38/enabled = true
+bones/38/bound_children = [  ]
+bones/39/name = "pinky02_L"
+bones/39/parent = 38
+bones/39/rest = Transform( 0.998176, -0.00376619, -0.0602542, 0.00269365, 0.999837, -0.0178716, 0.0603117, 0.0176767, 0.998023, 4.65661e-09, 3.34694e-08, -0.0322614 )
+bones/39/enabled = true
+bones/39/bound_children = [  ]
+bones/40/name = "pinky03_L"
+bones/40/parent = 39
+bones/40/rest = Transform( 0.999797, -0.0185804, -0.00773364, 0.0196792, 0.983044, 0.182314, 0.00421506, -0.182429, 0.98321, 1.11759e-08, -2.94531e-08, -0.0166188 )
+bones/40/enabled = true
+bones/40/bound_children = [  ]
+bones/41/name = "upperarm_twist_L"
+bones/41/parent = 18
+bones/41/rest = Transform( 0.99922, 0.00801256, -0.0386661, -0.0103583, 0.998093, -0.0608527, 0.0381048, 0.0612058, 0.997398, 1.29221e-07, 1.52504e-08, -1.23226e-07 )
+bones/41/enabled = true
+bones/41/bound_children = [  ]
+bones/42/name = "clavicle_R"
+bones/42/parent = 16
+bones/42/rest = Transform( -0.222333, 0.087828, 0.971007, 0.00218229, 0.995977, -0.0895869, -0.974968, -0.0177992, -0.221631, -0.0319597, 0.0263794, -0.157404 )
+bones/42/enabled = true
+bones/42/bound_children = [  ]
+bones/43/name = "upperarm_R"
+bones/43/parent = 42
+bones/43/rest = Transform( 0.953765, -0.144444, 0.263568, 0.103069, 0.980956, 0.164625, -0.282328, -0.129848, 0.950489, -6.33299e-08, -2.14204e-08, -0.109797 )
+bones/43/enabled = true
+bones/43/bound_children = [  ]
+bones/44/name = "lowerarm_R"
+bones/44/parent = 43
+bones/44/rest = Transform( 0.999438, -0.0322291, 0.00922357, 0.0333921, 0.981399, -0.189052, -0.00295898, 0.189254, 0.981924, 3.41097e-08, -2.56114e-09, -0.270654 )
+bones/44/enabled = true
+bones/44/bound_children = [  ]
+bones/45/name = "lowerarm_twist_R"
+bones/45/parent = 44
+bones/45/rest = Transform( 0.999989, -7.08997e-05, 0.0047369, 0.000134032, 0.999911, -0.0133317, -0.00473556, 0.0133322, 0.9999, -6.13509e-08, 5.40167e-08, -1.32713e-08 )
+bones/45/enabled = true
+bones/45/bound_children = [  ]
+bones/46/name = "hand_R"
+bones/46/parent = 44
+bones/46/rest = Transform( 0.0468659, -0.993746, 0.101352, 0.994864, 0.0555486, 0.084616, -0.0897167, 0.0968656, 0.991246, -1.17579e-07, 7.45058e-09, -0.230971 )
+bones/46/enabled = true
+bones/46/bound_children = [ NodePath("Right Hand") ]
+bones/47/name = "pinky00_R"
+bones/47/parent = 46
+bones/47/rest = Transform( -0.992094, 0.0626684, 0.108732, -0.0400692, -0.979224, 0.198783, 0.11893, 0.192855, 0.973993, -0.0216406, 0.00461487, -0.0185496 )
+bones/47/enabled = true
+bones/47/bound_children = [  ]
+bones/48/name = "pinky01_R"
+bones/48/parent = 47
+bones/48/rest = Transform( 0.992515, 0.110553, 0.0518933, -0.12117, 0.94449, 0.305379, -0.0152521, -0.309381, 0.950816, -2.32831e-10, -6.43486e-08, -0.0443928 )
+bones/48/enabled = true
+bones/48/bound_children = [  ]
+bones/49/name = "pinky02_R"
+bones/49/parent = 48
+bones/49/rest = Transform( 0.996741, -0.052109, 0.061583, 0.0529773, 0.998517, -0.0125499, -0.0608377, 0.0157715, 0.998023, 1.86265e-09, -2.67755e-08, -0.0322614 )
+bones/49/enabled = true
+bones/49/bound_children = [  ]
+bones/50/name = "pinky03_R"
+bones/50/parent = 49
+bones/50/rest = Transform( 0.997795, 0.0663413, 0.00200184, -0.0655922, 0.981022, 0.182463, 0.0101409, -0.182192, 0.983211, -5.58794e-09, 1.32713e-07, -0.0166189 )
+bones/50/enabled = true
+bones/50/bound_children = [  ]
+bones/51/name = "index00_R"
+bones/51/parent = 46
+bones/51/rest = Transform( -0.984712, 0.164761, -0.0565248, -0.170486, -0.978172, 0.118804, -0.0357167, 0.126624, 0.991308, 0.0177722, 0.000725314, -0.0206455 )
+bones/51/enabled = true
+bones/51/bound_children = [  ]
+bones/52/name = "middle00_R"
+bones/52/parent = 46
+bones/52/rest = Transform( -0.991319, 0.13148, -5.11929e-05, -0.12797, -0.964767, 0.229888, 0.0301762, 0.227899, 0.973217, 0.00448283, 0.00201413, -0.0210766 )
+bones/52/enabled = true
+bones/52/bound_children = [  ]
+bones/53/name = "ring00_R"
+bones/53/parent = 46
+bones/53/rest = Transform( -0.989958, 0.0751194, 0.119747, -0.0477803, -0.975074, 0.216676, 0.133039, 0.208778, 0.968872, -0.00513241, 0.000747337, -0.0205348 )
+bones/53/enabled = true
+bones/53/bound_children = [  ]
+bones/54/name = "index01_R"
+bones/54/parent = 51
+bones/54/rest = Transform( 0.975786, 0.200152, -0.0882057, -0.175751, 0.95754, 0.228535, 0.130202, -0.207499, 0.969532, -1.76951e-08, 1.62516e-07, -0.0537165 )
+bones/54/enabled = true
+bones/54/bound_children = [  ]
+bones/55/name = "index02_R"
+bones/55/parent = 54
+bones/55/rest = Transform( 0.992426, -0.105279, -0.063307, 0.104334, 0.994378, -0.0180616, 0.0648526, 0.0113198, 0.997831, -3.25963e-09, -5.26197e-08, -0.0333519 )
+bones/55/enabled = true
+bones/55/bound_children = [  ]
+bones/56/name = "index03_R"
+bones/56/parent = 55
+bones/56/rest = Transform( 0.995811, 0.0913412, 0.00403135, -0.0898436, 0.969403, 0.228444, 0.0169583, -0.227849, 0.973549, 3.72529e-09, 1.36904e-07, -0.0224328 )
+bones/56/enabled = true
+bones/56/bound_children = [  ]
+bones/57/name = "middle01_R"
+bones/57/parent = 52
+bones/57/rest = Transform( 0.982854, 0.180899, -0.0356717, -0.151728, 0.903433, 0.400983, 0.104764, -0.388696, 0.91539, -4.65661e-09, 7.45058e-08, -0.0522128 )
+bones/57/enabled = true
+bones/57/bound_children = [  ]
+bones/58/name = "middle02_R"
+bones/58/parent = 57
+bones/58/rest = Transform( 0.997593, 0.0693321, 0.000775993, -0.0691281, 0.9954, -0.0663397, -0.00537192, 0.0661265, 0.997797, -7.45058e-09, 1.76951e-08, -0.039648 )
+bones/58/enabled = true
+bones/58/bound_children = [  ]
+bones/59/name = "middle03_R"
+bones/59/parent = 58
+bones/59/rest = Transform( 0.987061, -0.159733, -0.013995, 0.159451, 0.968601, 0.190757, -0.0169147, -0.19052, 0.981538, 1.11759e-08, -7.35745e-08, -0.0246962 )
+bones/59/enabled = true
+bones/59/bound_children = [  ]
+bones/60/name = "ring01_R"
+bones/60/parent = 53
+bones/60/rest = Transform( 0.995238, 0.0839777, 0.049479, -0.0965671, 0.918467, 0.383528, -0.013237, -0.38648, 0.922203, -2.32831e-09, -2.64263e-08, -0.0480418 )
+bones/60/enabled = true
+bones/60/bound_children = [  ]
+bones/61/name = "ring02_R"
+bones/61/parent = 60
+bones/61/rest = Transform( 0.999951, -0.00980572, -0.00132979, 0.00965422, 0.996215, -0.086383, 0.0021718, 0.086366, 0.996261, 1.11759e-08, -2.42144e-08, -0.0395079 )
+bones/61/enabled = true
+bones/61/bound_children = [  ]
+bones/62/name = "ring03_R"
+bones/62/parent = 61
+bones/62/rest = Transform( 0.998878, 0.00118414, 0.0473416, -0.00700461, 0.992386, 0.12297, -0.0468355, -0.123164, 0.99128, -1.86265e-09, -9.91859e-08, -0.022404 )
+bones/62/enabled = true
+bones/62/bound_children = [  ]
+bones/63/name = "thumb01_R"
+bones/63/parent = 46
+bones/63/rest = Transform( 0.0803341, 0.779458, -0.621283, -0.813928, -0.308501, -0.492288, -0.575384, 0.545227, 0.60964, 0.0163288, 0.00333254, -0.0132471 )
+bones/63/enabled = true
+bones/63/bound_children = [  ]
+bones/64/name = "thumb02_R"
+bones/64/parent = 63
+bones/64/rest = Transform( 0.961993, 0.0501096, -0.268438, -0.114911, 0.96603, -0.231475, 0.24772, 0.253523, 0.935073, -1.30385e-08, 0, -0.0382216 )
+bones/64/enabled = true
+bones/64/bound_children = [  ]
+bones/65/name = "thumb03_R"
+bones/65/parent = 64
+bones/65/rest = Transform( 0.994668, -0.061625, 0.0826839, 0.0300279, 0.940139, 0.339466, -0.0986538, -0.335173, 0.936977, -7.63685e-08, -2.6077e-08, -0.0318321 )
+bones/65/enabled = true
+bones/65/bound_children = [  ]
+bones/66/name = "upperarm_twist_R"
+bones/66/parent = 43
+bones/66/rest = Transform( 0.999273, 0.00127796, 0.0380974, 0.00105714, 0.998124, -0.0612099, -0.0381041, 0.0612057, 0.997398, 7.67177e-08, -2.92202e-08, 2.40514e-07 )
+bones/66/enabled = true
+bones/66/bound_children = [  ]
+bones/67/name = "breast_L"
+bones/67/parent = 16
+bones/67/rest = Transform( -0.978392, 0.0658631, -0.195987, 0.206491, 0.359454, -0.91003, 0.0105111, -0.930835, -0.365287, 0.0754233, 0.0395465, -0.0401447 )
+bones/67/enabled = true
+bones/67/bound_children = [  ]
+bones/68/name = "breast_R"
+bones/68/parent = 16
+bones/68/rest = Transform( -0.978392, -0.065863, 0.195987, -0.20649, 0.359454, -0.91003, -0.0105109, -0.930836, -0.365287, -0.0754233, 0.0395465, -0.0401445 )
+bones/68/enabled = true
+bones/68/bound_children = [  ]
+bones/69/name = "neck"
+bones/69/parent = 16
+bones/69/rest = Transform( 1, 4.53983e-08, 1.15117e-07, 4.1324e-08, 0.754355, -0.656467, -1.16642e-07, 0.656467, 0.754355, -8.62823e-09, 0.0319238, -0.192118 )
+bones/69/enabled = true
+bones/69/bound_children = [  ]
+bones/70/name = "head"
+bones/70/parent = 69
+bones/70/rest = Transform( 1, -2.38922e-07, -6.63272e-08, 2.46059e-07, 0.923111, 0.384535, -3.06465e-08, -0.384535, 0.923111, -4.65661e-10, 5.30854e-08, -0.114648 )
+bones/70/enabled = true
+bones/70/bound_children = [  ]
+bones/71/name = "eye_R"
+bones/71/parent = 70
+bones/71/rest = Transform( -1, -3.79019e-08, 2.08428e-07, -2.03706e-07, -0.0980712, -0.995179, 5.816e-08, -0.995179, 0.0980712, -0.03137, 0.095236, -0.0700154 )
+bones/71/enabled = true
+bones/71/bound_children = [  ]
+bones/72/name = "eye_L"
+bones/72/parent = 70
+bones/72/rest = Transform( -1, -3.79019e-08, 2.08428e-07, -2.03706e-07, -0.0980712, -0.995179, 5.816e-08, -0.995179, 0.0980712, 0.03137, 0.0952359, -0.0700154 )
+bones/72/enabled = true
+bones/72/bound_children = [  ]
 
-[node name="Mesh" parent="Rig/Skeleton" index="0"]
-material/1 = ExtResource( 3 )
-_sections_unfolded = [ "Material" ]
+[node name="Body" parent="Rig/Skeleton" index="0" instance=ExtResource( 2 )]
 
-[node name="Short Hair" parent="Rig/Skeleton" index="1" instance=ExtResource( 4 )]
+[node name="Short Hair" parent="Rig/Skeleton" index="1" instance=ExtResource( 3 )]
 extra_cull_margin = 0.5
 
-[node name="Collar" parent="Rig/Skeleton" index="2" instance=ExtResource( 5 )]
+[node name="Collar" parent="Rig/Skeleton" index="2" instance=ExtResource( 4 )]
 extra_cull_margin = 0.5
 
-[node name="Rag" parent="Rig/Skeleton" index="3" instance=ExtResource( 6 )]
+[node name="Rag" parent="Rig/Skeleton" index="3" instance=ExtResource( 5 )]
 editor/display_folded = true
+_sections_unfolded = [ "_itemMesh" ]
 
 [node name="Mesh" parent="Rig/Skeleton/Rag" index="0"]
-mesh = ExtResource( 7 )
+mesh = ExtResource( 6 )
 skeleton = NodePath("../..")
 material/0 = null
+
+[node name="Actions" parent="Rig/Skeleton/Rag" index="2"]
+editor/display_folded = true
+
+[node name="Configurations" parent="Rig/Skeleton/Rag" index="3"]
+editor/display_folded = true
 
 [node name="Wear" parent="Rig/Skeleton/Rag/Configurations" index="0"]
 Active = true
 
+[node name="Markers" parent="Rig/Skeleton/Rag" index="4"]
+editor/display_folded = true
+
 [node name="Chest" type="BoneAttachment" parent="Rig/Skeleton" index="4"]
-transform = Transform( -1, -5.35921e-07, -7.3388e-08, -4.70555e-08, 0.221344, -0.975196, 5.38872e-07, -0.975196, -0.221344, 9.54373e-09, 1.15451, 0.030444 )
+editor/display_folded = true
+transform = Transform( -1, -5.35921e-07, -7.3394e-08, -4.70539e-08, 0.221344, -0.975196, 5.38872e-07, -0.975196, -0.221344, 9.5505e-09, 1.15451, 0.0304438 )
 bone_name = "spine03"
 _sections_unfolded = [ "Transform" ]
 
 [node name="Label" type="Spatial" parent="Rig/Skeleton/Chest" index="0"]
 transform = Transform( 1, 1.7053e-13, 4.26326e-14, 3.41061e-13, 1, 0, -8.52651e-14, -5.96046e-08, 1, 3.60053e-09, -0.0169366, 0.0746193 )
-script = ExtResource( 8 )
+script = ExtResource( 7 )
 _key = "Label"
 
 [node name="Right Hand" type="BoneAttachment" parent="Rig/Skeleton" index="5"]
-transform = Transform( -0.0734935, -0.569706, -0.818555, 0.129921, -0.81925, 0.558525, -0.988797, -0.0652994, 0.134226, 0.575051, 1.05649, -0.0324158 )
+editor/display_folded = true
+transform = Transform( -0.0734933, -0.569706, -0.818556, 0.12992, -0.81925, 0.558526, -0.988797, -0.0652987, 0.134226, 0.575052, 1.05649, -0.0324161 )
 bone_name = "hand_R"
 _sections_unfolded = [ "Transform" ]
 
 [node name="Equip" type="Spatial" parent="Rig/Skeleton/Right Hand" index="0"]
-script = ExtResource( 8 )
+script = ExtResource( 7 )
 _sections_unfolded = [ "Transform" ]
 _key = "RightHand"
 
 [node name="Left Hand" type="BoneAttachment" parent="Rig/Skeleton" index="6"]
-transform = Transform( -0.0731258, 0.570089, 0.818323, -0.130544, -0.818931, 0.558847, 0.988742, -0.0659613, 0.134307, -0.575052, 1.05649, -0.0324155 )
+editor/display_folded = true
+transform = Transform( -0.0731262, 0.570089, 0.818323, -0.130545, -0.818931, 0.558847, 0.988743, -0.0659607, 0.134307, -0.575052, 1.05649, -0.0324159 )
 bone_name = "hand_L"
 _sections_unfolded = [ "Transform" ]
 
 [node name="Equip" type="Spatial" parent="Rig/Skeleton/Left Hand" index="0"]
 transform = Transform( 0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0 )
-script = ExtResource( 8 )
+script = ExtResource( 7 )
 _sections_unfolded = [ "Transform" ]
 _key = "LeftHand"
 
 [node name="Binding" type="Node" parent="Rig/Skeleton" index="7"]
-script = ExtResource( 9 )
+script = ExtResource( 8 )
 
 [node name="CollisionShape" type="CollisionShape" parent="." index="1"]
 transform = Transform( -1, -3.25841e-07, 1.4243e-14, 0, -4.37114e-08, -1, 3.25841e-07, -1, 4.37114e-08, 0, 0.809487, 0 )
-shape = SubResource( 1 )
+shape = SubResource( 6 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+editor/display_folded = true
 root_node = NodePath("..")
 autoplay = ""
 playback_process_mode = 0
 playback_default_blend_time = 0.0
 playback_speed = 1.0
+anims/Blinking = ExtResource( 9 )
 anims/Idle = ExtResource( 10 )
 anims/Reset = ExtResource( 11 )
 "anims/Walk Backward" = ExtResource( 12 )
@@ -115,20 +503,21 @@ blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 
 [node name="Binding" type="Node" parent="AnimationPlayer" index="0"]
-script = ExtResource( 9 )
+script = ExtResource( 8 )
 
 [node name="AnimationTreePlayer" type="AnimationTreePlayer" parent="." index="3"]
+editor/display_folded = true
 playback_process_mode = 0
 master_player = NodePath("../AnimationPlayer")
 base_path = NodePath("..")
 active = false
 data = {
 "active": false,
-"connections": [ "One Shot Trigger", "out", 0, "Forward", "Move", 0, "Backward", "Move", 1, "Strafe", "Move", 2, "Forward Left", "Forward", 0, "Walk Forward", "Forward", 1, "Forward Right", "Forward", 2, "Override Blend 1", "Override Blend 2", 0, "Override 2", "Override Blend 2", 1, "Override Blend 2", "Override Blend 3", 0, "Override 3", "Override Blend 3", 1, "Override Blend 3", "One Shot Trigger", 0, "One Shot", "One Shot Trigger", 1, "Idle", "Idle-Move", 0, "Speed", "Idle-Move", 1, "Move", "Speed", 0, "Left", "Strafe", 0, "Right", "Strafe", 1, "Backward Left", "Backward", 0, "Walk Backward", "Backward", 1, "Backward Right", "Backward", 2, "Idle-Move", "Override Blend 1", 0, "Override 1", "Override Blend 1", 1 ],
+"connections": [ "Blink", "out", 0, "Forward", "Move", 0, "Backward", "Move", 1, "Strafe", "Move", 2, "Forward Left", "Forward", 0, "Walk Forward", "Forward", 1, "Forward Right", "Forward", 2, "One Shot Trigger", "Blink", 0, "Blink Anim", "Blink", 1, "Override Blend 2", "Override Blend 3", 0, "Override 3", "Override Blend 3", 1, "Override Blend 3", "One Shot Trigger", 0, "One Shot", "One Shot Trigger", 1, "Left", "Strafe", 0, "Right", "Strafe", 1, "Idle", "Idle-Move", 0, "Speed", "Idle-Move", 1, "Override Blend 1", "Override Blend 2", 0, "Override 2", "Override Blend 2", 1, "Move", "Speed", 0, "Backward Left", "Backward", 0, "Walk Backward", "Backward", 1, "Backward Right", "Backward", 2, "Idle-Move", "Override Blend 1", 0, "Override 1", "Override Blend 1", 1 ],
 "master": NodePath("../AnimationPlayer"),
 "nodes": [ {
 "id": "out",
-"position": Vector2( 1497.24, 468.573 ),
+"position": Vector2( 1601.19, 468.573 ),
 "type": "output"
 }, {
 "id": "Move",
@@ -166,23 +555,22 @@ data = {
 "position": Vector2( 512.759, 361.69 ),
 "type": "animation"
 }, {
+"autorestart": false,
+"autorestart_delay": 4.0,
+"autorestart_random_delay": 4.0,
+"fade_in": 0.0,
+"fade_out": 0.0,
+"filter": [  ],
+"id": "Blink",
+"mix": true,
+"position": Vector2( 1486.27, 468.623 ),
+"type": "oneshot"
+}, {
 "filter": [  ],
 "from": "Walk Backward",
 "id": "Walk Backward",
 "position": Vector2( 54.0293, 534.577 ),
 "type": "animation"
-}, {
-"blend": 0.0,
-"filter": [  ],
-"id": "Override Blend 2",
-"position": Vector2( 955.528, 468.583 ),
-"type": "blend2"
-}, {
-"blend": 0.0,
-"filter": [  ],
-"id": "Override Blend 3",
-"position": Vector2( 1133.45, 468.603 ),
-"type": "blend2"
 }, {
 "filter": [  ],
 "from": "Walk Forward",
@@ -190,11 +578,11 @@ data = {
 "position": Vector2( 63.9974, 189.871 ),
 "type": "animation"
 }, {
-"animation": null,
+"blend": 0.0,
 "filter": [  ],
-"id": "Override 3",
-"position": Vector2( 997.521, 613.469 ),
-"type": "animation"
+"id": "Override Blend 3",
+"position": Vector2( 1133.45, 468.603 ),
+"type": "blend2"
 }, {
 "autorestart": false,
 "autorestart_delay": 1.0,
@@ -206,6 +594,16 @@ data = {
 "mix": false,
 "position": Vector2( 1316.34, 468.583 ),
 "type": "oneshot"
+}, {
+"id": "Strafe",
+"position": Vector2( 244.924, 791.312 ),
+"transitions": [ {
+"auto_advance": false
+}, {
+"auto_advance": false
+} ],
+"type": "transition",
+"xfade": 0.0
 }, {
 "filter": [  ],
 "from": "Walk Left",
@@ -223,6 +621,18 @@ data = {
 "type": "transition",
 "xfade": 0.5
 }, {
+"animation": null,
+"filter": [  ],
+"id": "Override 3",
+"position": Vector2( 997.521, 613.469 ),
+"type": "animation"
+}, {
+"blend": 0.0,
+"filter": [  ],
+"id": "Override Blend 2",
+"position": Vector2( 955.528, 468.583 ),
+"type": "blend2"
+}, {
 "filter": [  ],
 "from": "Walk Right",
 "id": "Forward Right",
@@ -239,16 +649,6 @@ data = {
 "id": "Forward Left",
 "position": Vector2( 69.0319, 76.9283 ),
 "type": "animation"
-}, {
-"id": "Strafe",
-"position": Vector2( 244.924, 791.312 ),
-"transitions": [ {
-"auto_advance": false
-}, {
-"auto_advance": false
-} ],
-"type": "transition",
-"xfade": 0.0
 }, {
 "filter": [  ],
 "from": "Walk Right",
@@ -284,12 +684,18 @@ data = {
 "id": "One Shot",
 "position": Vector2( 1174.42, 610.452 ),
 "type": "animation"
+}, {
+"filter": [  ],
+"from": "Blinking",
+"id": "Blink Anim",
+"position": Vector2( 1361.32, 609.453 ),
+"type": "animation"
 } ]
 }
 _sections_unfolded = [ "Playback" ]
 
 [node name="Binding" type="Node" parent="AnimationTreePlayer" index="0"]
-script = ExtResource( 9 )
+script = ExtResource( 8 )
 
 [node name="Vision" type="Node" parent="." index="4"]
 script = ExtResource( 16 )
@@ -302,6 +708,8 @@ _minPitch = -70.0
 _headBone = "head"
 _eyeBoneLeft = "eye_L"
 _eyeBoneRight = "eye_R"
+_blinkInterval = 3.0
+_blinkVariation = 0.5
 
 [node name="Locomotion" type="Node" parent="." index="5"]
 script = ExtResource( 17 )
